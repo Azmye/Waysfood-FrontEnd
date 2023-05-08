@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Navbar from './components/header/Navbar';
 import ModalContainers from './components/ModalContainers';
-import Landing from './pages/landing';
 import Menus from './pages/Menus';
 import Cart from './pages/Cart';
 import Profile from './pages/Profile';
@@ -13,6 +12,7 @@ import { UserContext } from './context/UserContext';
 import { API, setAuthToken } from './api/Api';
 import { PrivateRouteAdmin, PrivateRouteLogin, PrivateRouteUser } from './components/PrivateRoute';
 import 'mapbox-gl/dist/mapbox-gl.css';
+import Home from './pages/Home';
 
 const App = () => {
   let navigate = useNavigate();
@@ -62,7 +62,7 @@ const App = () => {
       <ModalContainers />
       <Navbar />
       <Routes>
-        <Route path="/" element={<Landing />} />
+        <Route path="/" element={<Home />} />
         <Route element={<PrivateRouteLogin />}>
           <Route path="/menu/:id" element={<Menus />} />
           <Route path="/profile" element={<Profile />} />

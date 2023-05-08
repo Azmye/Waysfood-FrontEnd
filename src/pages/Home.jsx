@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { useQuery } from 'react-query';
 import { API } from '../api/Api';
 
-const Landing = () => {
+const Home = () => {
   const [restos, setRestos] = useState(null);
   const [userState, userDispatch] = useContext(UserContext);
   const navigate = useNavigate();
@@ -38,4 +38,4 @@ const Landing = () => {
   );
 };
 
-export default Landing;
+export default Home;
