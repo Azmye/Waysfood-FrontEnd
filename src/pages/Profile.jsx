@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import profPics from '../assets/img/profile.png';
+import profPics from '/img/profile.png';
 import OrderHistoryItem from '../components/OrderHistoryItem';
 import { UserContext } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';

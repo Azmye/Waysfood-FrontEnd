@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
-import navBrandIcon from '../../assets/svg/nav-Icon.svg';
+import navBrandIcon from '/nav-Icon.svg';
 import { AuthContext } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
-import profilePic from '../../assets/img/profile.png';
+import profilePic from '/img/profile.png';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { DropdownContext } from '../../context/DropdownContext';
 import CustomerDropdown from '../dropdown/CustomerDropdown';

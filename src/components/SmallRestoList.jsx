@@ -1,8 +1,8 @@
 import SmallRestoListItem from './SmallRestoListItem';
-import burgerKing from '../assets/img/burger-king-item.png';
-import jco from '../assets/img/jco.png';
-import kfc from '../assets/img/kfc.png';
-import starbuck from '../assets/img/starbuck-icon.png';
+import burgerKing from '/img/burger-king-item.png';
+import jco from '/img/jco.png';
+import kfc from '/img/kfc.png';
+import starbuck from '/img/starbuck-icon.png';
 
 const SmallRestoList = () => {
   return (
