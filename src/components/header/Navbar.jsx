@@ -56,7 +56,7 @@ const Navbar = () => {
             <div className="relative">
               <div className="flex gap-x-3">
                 <button className="relative">
-                  {pendingCart?.length <= 0 ? null : (
+                  {userState.user.role === 'customer' && pendingCart?.length <= 0 ? null : (
                     <div className="absolute -right-2 top-0 bg-red-500 text-white w-5 h-5 rounded-full">
                       <p>{pendingCart?.length}</p>
                     </div>
