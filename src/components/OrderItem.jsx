@@ -1,5 +1,5 @@
 import { FaMinus, FaPlus, FaTrash, FaTrashAlt } from 'react-icons/fa';
-import geprekBensuPics from 'public/img/geprek-bensu.png';
+import geprekBensuPics from '/img/geprek-bensu.png';
 
 const OrderItem = (props) => {
   return (
