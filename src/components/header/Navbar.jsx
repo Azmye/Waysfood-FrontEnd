@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import navBrandIcon from '../../assets/svg/nav-icon.svg';
+import navBrandIcon from '../../assets/svg/nav-Icon.svg';
 import { AuthContext } from '../../context/AuthContext';
 import { Link } from 'react-router-dom';
 import { UserContext } from '../../context/UserContext';
