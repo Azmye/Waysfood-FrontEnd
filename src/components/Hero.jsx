@@ -1,4 +1,4 @@
-import pizzaIcon from '/img/pizza-logo.png';
+import pizzaIcon from 'public/img/pizza-logo.png';
 
 const Hero = () => {
   return (

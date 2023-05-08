@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import geprekBensuPic from '/img/geprek-bensu.png';
+import geprekBensuPic from 'public/img/geprek-bensu.png';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../context/UserContext';
 import { useMutation, useQuery } from 'react-query';

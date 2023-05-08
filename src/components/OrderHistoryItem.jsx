@@ -1,4 +1,4 @@
-import waysfoodIco from '/nav-icon.svg';
+import waysfoodIco from 'public/nav-icon.svg';
 
 const OrderHistoryItem = () => {
   return (
