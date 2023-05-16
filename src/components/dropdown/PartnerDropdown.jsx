@@ -11,7 +11,7 @@ const PartnerDropdown = () => {
   const [userState, userDispatch] = useContext(UserContext);
   return (
     <>
-      <div className="absolute right-3 text-white mt-2">
+      <div className="absolute right-3 text-white mt-2 z-[10000]">
         <BsFillTriangleFill />
       </div>
       <div onMouseLeave={() => dropdownDispatch({ type: 'CLOSE_DROPDOWN' })} className="w-44 font-sans absolute bg-white mt-5 right-0 rounded-md shadow-lg z-[10000]">
@@ -23,7 +23,7 @@ const PartnerDropdown = () => {
           <IoFastFoodOutline />
           <span className="font-semibold">Add Product</span>
         </Link>
-        <Link to={`/menu/${userState.user.id}`} className="pl-4 py-2 flex items-center gap-x-3 ">
+        <Link to={`/owner-menu`} className="pl-4 py-2 flex items-center gap-x-3 ">
           <IoFastFoodOutline />
           <span className="font-semibold">My Menu</span>
         </Link>

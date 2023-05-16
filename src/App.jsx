@@ -13,6 +13,7 @@ import { API, setAuthToken } from './api/Api';
 import { PrivateRouteAdmin, PrivateRouteLogin, PrivateRouteUser } from './components/PrivateRoute';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import Home from './pages/Home';
+import OwnerMenus from './pages/OwnerMenus';
 
 const App = () => {
   let navigate = useNavigate();
@@ -64,13 +65,14 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route element={<PrivateRouteLogin />}>
-          <Route path="/menu/:id" element={<Menus />} />
           <Route path="/profile" element={<Profile />} />
           <Route element={<PrivateRouteUser />}>
             <Route path="/order" element={<Cart />} />
             <Route path="/customer-profile-update" element={<ProfileUpdate title={'Update Customer Profile'} />} />
+            <Route path="/menu/:id" element={<Menus />} />
           </Route>
           <Route element={<PrivateRouteAdmin />}>
+            <Route path="/owner-menu" element={<OwnerMenus />} />
             <Route path="/partner-profile-update" element={<ProfileUpdate title={'Update Partner Profile'} />} />
             <Route path="/product-add" element={<AddProduct />} />
             <Route path="/transaction-table" element={<TransactionTable />} />

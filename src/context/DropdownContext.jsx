@@ -5,6 +5,7 @@ export const DropdownContext = createContext();
 const initialState = {
   isCustomer: false,
   isPartner: false,
+  isPenOrder: false,
 };
 
 const reducer = (state, action) => {
@@ -21,6 +22,16 @@ const reducer = (state, action) => {
       return {
         isCustomer: false,
         isPartner: false,
+      };
+    }
+    case 'OPEN_PENORDER_NOTICE': {
+      return {
+        isPenOrder: true,
+      };
+    }
+    case 'CLOSE_PENORDER_NOTICE': {
+      return {
+        isPenOrder: false,
       };
     }
     default:

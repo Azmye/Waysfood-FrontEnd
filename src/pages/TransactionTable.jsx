@@ -3,7 +3,7 @@ import React from 'react';
 const TransactionTable = () => {
   return (
     <React.Fragment>
-      <div className="px-36 pt-40 mx-auto container">
+      <div className="px-36 pt-48 mx-auto container">
         <h2 className="text-3xl font-bold mb-3">Income Transactions</h2>
         <div className="relative overflow-x-auto font-sans">
           <table className="w-full text-sm text-left text-gray-500 dark:text-gray-400">

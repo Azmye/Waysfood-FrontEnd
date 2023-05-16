@@ -25,7 +25,7 @@ const Profile = () => {
               <h2 className="text-3xl font-bold mb-3">{userState.user.role === 'partner' ? 'Partner Profile' : 'My Profile'}</h2>
               <div className="flex gap-x-3">
                 <div>
-                  <img src={user.image_url ? user.image_url : profPics} alt="" className="mb-3" />
+                  <img src={user.image_url ? user.image_url : profPics} alt="" className="mb-3 w-56 h-72 object-cover" />
                   <div className="font-sans">
                     <button onClick={() => navigate(userState.user.role === 'partner' ? '/partner-profile-update' : '/customer-profile-update')} className="bg-zinc-800 font-bold text-white py-2 w-full rounded-md">
                       Update Profile

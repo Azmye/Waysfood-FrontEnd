@@ -15,8 +15,7 @@ const Navbar = () => {
   const [authState, authDispatch] = useContext(AuthContext);
   const [userState, userDispatch] = useContext(UserContext);
   const [dropdownState, dropdownDispatch] = useContext(DropdownContext);
-  const [pendingCart, setPendingCart] = useState(null);
-  console.log(userState.user.role);
+  const [pendingOrder, setPendingOrder] = useState(null);
   const {
     data: carts,
     isLoading,
@@ -28,7 +27,7 @@ const Navbar = () => {
 
   useEffect(() => {
     if (!isLoading || isRefetching) {
-      carts && setPendingCart(carts.filter((cart) => cart.Status == 'pending'));
+      carts && setPendingOrder(carts.filter((cart) => cart.Status == 'pending' && cart.CustomerID == userState.user.id));
     }
   }, [isLoading, carts, isRefetching]);
 
@@ -56,9 +55,9 @@ const Navbar = () => {
             <div className="relative">
               <div className="flex gap-x-3">
                 <button className="relative">
-                  {userState.user.role == 'partner' || pendingCart?.length <= 0 ? null : (
+                  {userState.user.role == 'partner' || pendingOrder?.length <= 0 ? null : (
                     <div className="absolute -right-2 top-0 bg-red-500 text-white w-5 h-5 rounded-full">
-                      <p>{pendingCart?.length}</p>
+                      <p>{pendingOrder?.length}</p>
                     </div>
                   )}
                   {userState.user.role === 'partner' ? null : (
@@ -71,10 +70,9 @@ const Navbar = () => {
               </div>
 
               {/* Customer Dropdown */}
-              {userState.user.role === 'customer' && dropdownState.isCustomer && <CustomerDropdown />}
-
+              {userState.user.role == 'customer' && dropdownState.isCustomer && <CustomerDropdown />}
               {/* Partner Dropdown */}
-              {userState.user.role === 'partner' && dropdownState.isPartner && <PartnerDropdown />}
+              {userState.user.role == 'partner' && dropdownState.isPartner && <PartnerDropdown />}
             </div>
           )}
         </div>
