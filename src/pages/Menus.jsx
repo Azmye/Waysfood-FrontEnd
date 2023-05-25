@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 const Menus = () => {
   const [prods, setProds] = useState(null);
   const [userState, _] = useContext(UserContext);
+  const [partnerName, setPartnerName] = useState(null);
   const { id } = useParams();
 
   const { data: products, isLoading } = useQuery('productsCached', async () => {
@@ -22,9 +23,13 @@ const Menus = () => {
     }
   }, [isLoading]);
 
+  useEffect(() => {
+    prods && setPartnerName(prods[0].Partner.name);
+  }, [prods]);
+
   return (
     <React.Fragment>
-      <BigRestoList data={prods} loading={isLoading} orderBtn={true} listTitle={userState.user.role === 'partner' ? `${userState.user.name}, menus` : `Geprek Bensu, Menus`} className={'pt-36'} />
+      <BigRestoList data={prods} loading={isLoading} orderBtn={true} listTitle={userState.user.role === 'partner' ? `${userState.user.name}, menus` : `${partnerName}, Menus`} className={'pt-36'} />
     </React.Fragment>
   );
 };
