@@ -1,6 +1,29 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { useQuery } from 'react-query';
+import { API } from '../api/Api';
+import { UserContext } from '../context/UserContext';
 
 const TransactionTable = () => {
+  const [userState] = useContext(UserContext);
+  const [transactionList, setTransactionList] = useState(null);
+
+  const { data: Transactions, isLoading: TransactionsLoading } = useQuery('transactionsCached', async () => {
+    const response = await API.get(`/transactions`);
+    return response.data.data;
+  });
+
+  useEffect(() => {
+    let transList = Transactions?.filter((trx) => trx.PartnerID === userState.user.id);
+    setTransactionList(transList);
+  }, [Transactions]);
+
+  const rupiah = (number) => {
+    return new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
+    }).format(number);
+  };
+
   return (
     <React.Fragment>
       <div className="px-36 pt-48 mx-auto container">
@@ -10,36 +33,31 @@ const TransactionTable = () => {
             <thead className="text-xs text-black font-bold uppercase bg-yellow-300">
               <tr>
                 <th scope="col" className="px-6 py-3">
-                  Product name
+                  Date
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Color
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Category
+                  Status
                 </th>
                 <th scope="col" className="px-6 py-3">
                   Price
                 </th>
+                <th scope="col" className="px-6 py-3">
+                  Customer Name
+                </th>
               </tr>
             </thead>
             <tbody>
-              <tr className="bg-white border-b text-black">
-                <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap ">
-                  Apple MacBook Pro 17"
-                </th>
-                <td className="px-6 py-4">Silver</td>
-                <td className="px-6 py-4">Laptop</td>
-                <td className="px-6 py-4">$2999</td>
-              </tr>
-              <tr className="bg-white border-b text-black">
-                <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap ">
-                  Microsoft Surface Pro
-                </th>
-                <td className="px-6 py-4">White</td>
-                <td className="px-6 py-4">Laptop PC</td>
-                <td className="px-6 py-4">$1999</td>
-              </tr>
+              {transactionList &&
+                transactionList.map((trx) => (
+                  <tr className="bg-white border-b text-black">
+                    <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap ">
+                      {new Date(trx.CreatedAt).toDateString()}
+                    </th>
+                    <td className="px-6 py-4">{trx.Status}</td>
+                    <td className="px-6 py-4">{rupiah(trx.TotalPrice)}</td>
+                    <td className="px-6 py-4">{trx.Customer.name}</td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

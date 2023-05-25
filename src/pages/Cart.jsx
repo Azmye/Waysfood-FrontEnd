@@ -3,6 +3,7 @@ import OrderItem from '../components/OrderItem';
 import { useMutation, useQuery } from 'react-query';
 import { API } from '../api/Api';
 import { UserContext } from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const [pendingOrder, setPendingOrder] = useState(null);
@@ -12,6 +13,7 @@ const Cart = () => {
   const [userState, userDispatch] = useContext(UserContext);
   const [delivLocation, setDelivLocation] = useState(null);
   const [partnerID, setPartnerID] = useState(null);
+  const navigate = useNavigate();
 
   const { data: carts, isLoading } = useQuery('cartsIncCached', async () => {
     const response = await API.get(`/carts`);
@@ -86,7 +88,18 @@ const Cart = () => {
       const body = JSON.stringify(data);
 
       const response = await API.post('/transaction', body, config);
-      console.log('transaction success :', response);
+      if (response.status === 200) {
+        const formData = new FormData();
+        formData.set('status', 'success');
+
+        const rowIds = pendingOrder.map((ord) => ord.ID); // list of row ids to update
+        for (const id of rowIds) {
+          const response = await API.patch(`/cart/${id}`, formData);
+          console.log(response);
+        }
+      } else {
+        alert('transaction failed');
+      }
 
       const token = response.data.data.token;
       window.snap.pay(token, {

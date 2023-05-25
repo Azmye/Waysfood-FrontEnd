@@ -80,8 +80,7 @@ const ProfileUpdate = (props) => {
             <input type="text" onChange={handleOnChange} value={phoneNumber} name="phoneNumber" placeholder="PhoneNumber" className="w-full bg-zinc-300 rounded-md ring-2 ring-zinc-400 focus:outline-none focus:ring-zinc-800" />
           </div>
           <div className="mb-4 flex gap-x-3">
-            <input type="text" onChange={handleOnChange} value={address} name="address" placeholder="Location" className="w-4/5 bg-zinc-300 rounded-md ring-2 ring-zinc-400 focus:outline-none focus:ring-zinc-800" />
-            <button className="w-1/5 bg-zinc-800 text-white rounded-md">Show on map</button>
+            <input type="text" onChange={handleOnChange} value={address} name="address" placeholder="Location" className="w-full bg-zinc-300 rounded-md ring-2 ring-zinc-400 focus:outline-none focus:ring-zinc-800" />
           </div>
 
           <div className="text-end">

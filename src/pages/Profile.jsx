@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import profPics from '/img/profile.png';
 import OrderHistoryItem from '../components/OrderHistoryItem';
 import { UserContext } from '../context/UserContext';
@@ -8,12 +8,33 @@ import { API } from '../api/Api';
 
 const Profile = () => {
   const [userState] = useContext(UserContext);
+  const [userHistory, setUserHistory] = useState(null);
   const navigate = useNavigate();
 
   const { data: user, isLoading } = useQuery('userCached', async () => {
     const response = await API.get(`/user/${userState?.user.id}`);
     return response.data.data;
   });
+
+  const { data: history, isLoading: historyLoading } = useQuery('historyCached', async () => {
+    const response = await API.get(`/transactions`);
+    return response.data.data;
+  });
+
+  console.log(history);
+  console.log(userState);
+
+  const rupiah = (number) => {
+    return new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
+    }).format(number);
+  };
+
+  useEffect(() => {
+    let userHistory = history?.filter((histor) => (userState.user.role === 'customer' ? histor.CustomerID === userState.user.id : histor.PartnerID === userState.user.id));
+    setUserHistory(userHistory);
+  }, [history]);
 
   return (
     <>
@@ -50,9 +71,8 @@ const Profile = () => {
             </div>
             <div className="w-2/5">
               <h2 className="text-3xl font-bold mb-3">History Transaction</h2>
-              <div>
-                <OrderHistoryItem />
-              </div>
+              {console.log(userHistory)}
+              <div>{userHistory && userHistory.map((histor) => <OrderHistoryItem title={userState.user.name} date={new Date(histor.CreatedAt).toDateString()} totalPrice={rupiah(histor.TotalPrice)} status={histor.Status} />)}</div>
             </div>
           </div>
         </React.Fragment>
