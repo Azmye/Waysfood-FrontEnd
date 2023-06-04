@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // create base url
 export const API = axios.create({
-  baseURL: 'https://waysfood-backend-production-c4ef.up.railway.app/api/v1/',
+  baseURL: 'https://waysfood-backend-production.up.railway.app/api/v1/',
 });
 
 // set Authorization Token Header
