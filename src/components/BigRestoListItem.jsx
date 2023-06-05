@@ -79,7 +79,7 @@ const BigRestoListItem = (props) => {
         </div>
         <p className="font-bold text-lg mt-2">{props.name}</p>
         <div className="flex items-center justify-between">
-          {props.landing ? <p className="mb-3">{props.distance}</p> : <p className="mb-3">{props.price}</p>}
+          {props.landing ? <p className="mb-3">{props.distance}</p> : <p className="mb-3 text-red-700">{props.price}</p>}
           {props.landing ? null : (
             <div className="flex gap-x-3">
               <button disabled={qty <= 1 ? true : false} onClick={() => setQty(qty - 1)}>

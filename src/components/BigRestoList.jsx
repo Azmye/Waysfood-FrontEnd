@@ -4,6 +4,15 @@ import { API } from '../api/Api';
 import { useEffect, useState } from 'react';
 
 const BigRestoList = (props) => {
+  const rupiah = (number) => {
+    return new Intl.NumberFormat('id-ID', {
+      style: 'currency',
+      currency: 'IDR',
+    }).format(number);
+  };
+
+  console.log(props.data);
+
   return (
     <>
       {props.loading && <div>Loading...</div>}
@@ -25,7 +34,7 @@ const BigRestoList = (props) => {
                     name={resto.name ? resto.name : resto.Name}
                     distance={'0,6 Km'}
                     landing={props.landing}
-                    price={resto.Price == '0' ? 'Free' : resto.Price}
+                    price={resto.Price == '0' ? 'Free' : rupiah(resto.Price)}
                   />
                 ))
               )}

@@ -143,7 +143,7 @@ const Cart = () => {
           <div className="flex gap-x-5">
             <div className="w-3/5">
               <div className="h-0.5 w-full bg-zinc-800">
-                {pendingOrder && pendingOrder.map((order, idx) => <OrderItem key={idx} id={order.ID} name={order.Product.Name} price={rupiah(order.Product.Price)} image={order.Product.ImageURL} qty={order.Quantity} />)}
+                {pendingOrder && pendingOrder.map((order, idx) => <OrderItem key={idx} id={order.ID} name={order.Product.Name} price={order.Product.Price} image={order.Product.ImageURL} qty={order.Quantity} />)}
               </div>
             </div>
             <div className="w-2/5">
