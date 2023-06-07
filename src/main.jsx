@@ -7,6 +7,7 @@ import { AuthContextProvider } from './context/AuthContext.jsx';
 import { UserContextProvider } from './context/UserContext.jsx';
 import { DropdownContextProvider } from './context/DropdownContext.jsx';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { FoodContextProvider } from './context/FoodContext.jsx';
 
 const client = new QueryClient();
 
@@ -16,9 +17,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <UserContextProvider>
         <AuthContextProvider>
           <DropdownContextProvider>
-            <Router>
-              <App />
-            </Router>
+            <FoodContextProvider>
+              <Router>
+                <App />
+              </Router>
+            </FoodContextProvider>
           </DropdownContextProvider>
         </AuthContextProvider>
       </UserContextProvider>
