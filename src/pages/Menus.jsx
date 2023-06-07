@@ -29,7 +29,7 @@ const Menus = () => {
 
   return (
     <React.Fragment>
-      <BigRestoList data={prods} loading={isLoading} orderBtn={true} listTitle={userState.user.role === 'partner' ? `${userState.user.name}, menus` : `${partnerName}, Menus`} className={'pt-36'} />
+      <BigRestoList data={prods} loading={isLoading} filterBtn={true} orderBtn={true} listTitle={userState.user.role === 'partner' ? `${userState.user.name}, menus` : `${partnerName}, Menus`} className={'pt-36'} />
     </React.Fragment>
   );
 };

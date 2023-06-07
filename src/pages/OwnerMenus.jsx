@@ -14,7 +14,6 @@ const OwnerMenus = () => {
     const response = await API.get(`/products`);
     return response.data.data;
   });
-  // console.log(products?.filter((product) => product.PartnerID === Number(id)));
 
   useEffect(() => {
     if (!isLoading) {
